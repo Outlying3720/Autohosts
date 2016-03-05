@@ -17,7 +17,6 @@ ntpclient -s -h 202.120.2.101&
 
 #定义下载目录
 path='/www/hosts'
-#path='/Users/ii/Downloads/ADBYBY'
 cd $path
 echo "当前下载目录 $path"
 
