@@ -2,18 +2,14 @@
 
 #判断网络是否连通
 echo '脚本启动,开始检测网络状态'
-until [ $ping == 0 ]; do
-ping=`ping -c 1 baidu.com`
+until [ $? == 0 ]; do
+	sleep 5
+	ping -c 1 baidu.com
 done
 echo '网络连接成功'
 
-#同步时间
-echo "开始同步时间"
-ntpdate 202.108.6.95
-
 #定义下载目录
 path='/www/hosts'
-#path='/Users/ii/Downloads/ADBYBY'
 cd $path
 echo "当前下载目录 $path"
 
