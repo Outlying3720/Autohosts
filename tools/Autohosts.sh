@@ -1,22 +1,19 @@
 #! /bin/sh
-#Last Update 2016/03/04 6:36 PM
-#更新日志:
-#	[+]时间同步
-#	[+]网络检测
 
 #判断网络是否连通
 echo '脚本启动,开始检测网络状态'
-until [ $? == 0 ]; do
-	ping -c 1 baidu.com
+until [ $ping == 0 ]; do
+ping=`ping -c 1 baidu.com`
 done
 echo '网络连接成功'
 
 #同步时间
 echo "开始同步时间"
-ntpclient -s -h 202.120.2.101&
+ntpdate 202.108.6.95
 
 #定义下载目录
 path='/www/hosts'
+#path='/Users/ii/Downloads/ADBYBY'
 cd $path
 echo "当前下载目录 $path"
 
