@@ -1,12 +1,15 @@
 #! /bin/sh
 
 #判断网络是否连通
-echo '脚本启动,开始检测网络状态'
-until [ $? == 0 ]; do
-	sleep 5
-	ping -c 1 baidu.com
+echo '检测网络状态并同步时间'
+for i in `seq 15`; do
+	ntpdate 202.108.6.95 cn.ntp.org.cn
+	if [ $? == 1 ]; then
+		sleep 2
+	else
+		echo '同步时间成功'
+	fi
 done
-echo '网络连接成功'
 
 #定义下载目录
 path='/www/hosts'
