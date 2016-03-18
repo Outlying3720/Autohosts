@@ -2,12 +2,14 @@
 
 #判断网络是否连通
 echo '检测网络状态并同步时间'
+sleep 10
 for i in `seq 15`; do
 	ntpdate 202.108.6.95 cn.ntp.org.cn
 	if [ $? == 1 ]; then
 		sleep 2
 	else
 		echo '同步时间成功'
+		break
 	fi
 done
 
