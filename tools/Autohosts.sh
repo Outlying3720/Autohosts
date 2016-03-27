@@ -26,7 +26,7 @@ github='https://raw.githubusercontent.com/racaljk/hosts/master/hosts'
 #下载部分
 echo '尝试从rhcloud镜像中获取'
 for i in `seq 3`; do
-	wget -N $rhcloud -o outlog #下载并保存记录到outlog
+	wget --no-check-certificate -N $rhcloud -o outlog #下载并保存记录到outlog
 	stage=`grep -c 'not retrieving' outlog` #1.16版本兼容 无304 而是not retrieving
 	if [ $stage == 0 ]; then
 		stage=`grep -c '200' outlog`
@@ -34,12 +34,12 @@ for i in `seq 3`; do
 			echo "获取失败第 $i 次"
 			sleep 5
 		else
-			echo '从Sinaapp中获取成功'
+			echo '从rhcloud中获取成功'
 			echo '# Response: 200[rhcloud Updated]'>log
 			break
 		fi
 	else
-		echo '从Sinaapp中获取成功'
+		echo '从rhcloud中获取成功'
 		echo '# Response: 304[rhcloud NoUpdated]'>log
 		break
 	fi
